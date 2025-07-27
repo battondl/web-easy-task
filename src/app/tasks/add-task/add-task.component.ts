@@ -17,6 +17,8 @@ export class AddTaskComponent {
   enteredSummary = '';
   enteredDueDate = '';
 
+  
+
   onCancel() {
     this.cancel.emit();
   }
