@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
-import { AddTaskComponent } from "./add-task/add-task.component";
+import { AddTaskComponent } from './add-task/add-task.component';
+import { NewTaskData } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -10,9 +11,6 @@ import { AddTaskComponent } from "./add-task/add-task.component";
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-onAddTask($event: Event) {
-throw new Error('Method not implemented.');
-}
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name?: string;
 
@@ -57,6 +55,17 @@ throw new Error('Method not implemented.');
   }
 
   onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+
+  onAddTask(newTaskData: NewTaskData) {
+    this.tasks.push({
+      id: new Date().getTime.toString(),
+      title: newTaskData.title,
+      summary: newTaskData.summary,
+      dueDate: newTaskData.dueDate,
+      userId: this.userId,
+    });
     this.isAddingTask = false;
   }
 }
